@@ -1,0 +1,123 @@
+<!--
+  NOTE: FORM_ENDPOINT is a placeholder Formspree URL. Replace
+  "REPLACE_ME" with a real Formspree form ID before publishing.
+-->
+<form id="contact-form" class="space-y-5" novalidate>
+  <div>
+    <label for="name" class="block text-sm font-medium text-primary">
+      お名前 <span class="text-destructive">*</span>
+    </label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent"
+    />
+    <p data-error-for="name" class="mt-1 text-xs text-destructive hidden">お名前を入力してください。</p>
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-medium text-primary">
+      メールアドレス <span class="text-destructive">*</span>
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent"
+    />
+    <p data-error-for="email" class="mt-1 text-xs text-destructive hidden">正しいメールアドレスを入力してください。</p>
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-primary">
+      ご相談内容 <span class="text-destructive">*</span>
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      rows="5"
+      required
+      class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent"
+    ></textarea>
+    <p data-error-for="message" class="mt-1 text-xs text-destructive hidden">ご相談内容を入力してください。</p>
+  </div>
+
+  <button
+    type="submit"
+    class="w-full min-h-11 rounded-lg bg-accent text-white text-sm font-medium px-6 py-3 hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    送信する
+  </button>
+
+  <p id="form-status" role="status" aria-live="polite" class="text-sm text-center hidden"></p>
+</form>
+
+<script>
+  const FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_ME';
+
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const statusEl = document.getElementById('form-status') as HTMLParagraphElement;
+  const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function setFieldError(fieldName: string, hasError: boolean) {
+    const errorEl = form.querySelector(`[data-error-for="${fieldName}"]`);
+    if (errorEl) errorEl.classList.toggle('hidden', !hasError);
+  }
+
+  function validate(): boolean {
+    const nameInput = form.elements.namedItem('name') as HTMLInputElement;
+    const emailInput = form.elements.namedItem('email') as HTMLInputElement;
+    const messageInput = form.elements.namedItem('message') as HTMLTextAreaElement;
+
+    const nameValid = nameInput.value.trim().length > 0;
+    const emailValid = emailPattern.test(emailInput.value.trim());
+    const messageValid = messageInput.value.trim().length > 0;
+
+    setFieldError('name', !nameValid);
+    setFieldError('email', !emailValid);
+    setFieldError('message', !messageValid);
+
+    return nameValid && emailValid && messageValid;
+  }
+
+  function showStatus(text: string, colorClass: string) {
+    statusEl.className = `text-sm text-center ${colorClass}`;
+    statusEl.textContent = text;
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!validate()) {
+      showStatus('入力内容をご確認ください。', 'text-destructive');
+      return;
+    }
+
+    submitButton.disabled = true;
+    showStatus('送信中です…', 'text-muted');
+
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+
+      if (response.ok) {
+        showStatus('送信しました。ありがとうございます。', 'text-accent');
+        form.reset();
+      } else {
+        showStatus('送信に失敗しました。時間をおいて再度お試しください。', 'text-destructive');
+      }
+    } catch {
+      showStatus('送信に失敗しました。時間をおいて再度お試しください。', 'text-destructive');
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
+</script>

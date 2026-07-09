@@ -1,0 +1,17 @@
+---
+const snsLinks = [
+  { href: '#', label: 'X' },
+];
+---
+
+<footer class="mt-16 border-t border-border bg-card">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-primary font-bold">WEBCRAFT</p>
+    <p class="text-xs text-muted">&copy; {new Date().getFullYear()} WEBCRAFT</p>
+    <div class="flex gap-4 text-sm">
+      {snsLinks.map((link) => (
+        <a href={link.href} class="text-accent hover:text-secondary transition-colors">{link.label}</a>
+      ))}
+    </div>
+  </div>
+</footer>

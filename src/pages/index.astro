@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WorkCard from '../components/WorkCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { works } from '../data/works';
+
+const services = [
+  {
+    name: 'デザイン + コーディング',
+    for: 'ゼロからサイトを作りたい方、既存サイトのリニューアルをご検討の方向け',
+    steps: ['ヒアリング', 'デザイン制作', '実装・コーディング', '公開・納品'],
+  },
+  {
+    name: 'ランディングページ(LP)制作',
+    for: '広告出稿・集客用に、成果につながるLPが欲しい方向け',
+    steps: ['ヒアリング', '構成・デザイン', '実装・コーディング', '公開・効果測定サポート'],
+  },
+];
+
+const skills = ['Astro', 'Tailwind CSS', 'HTML / CSS', 'JavaScript / TypeScript'];
+---
+
+<BaseLayout title="トップ">
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 text-center">
+    <h1 class="text-3xl sm:text-5xl font-bold text-primary leading-snug">
+      デザインからコーディングまで。<br />伝わるWebサイトをつくります。
+    </h1>
+    <p class="mt-6 text-secondary text-sm sm:text-base leading-relaxed">
+      デザイン制作からLP(ランディングページ)制作まで、成果につながるWebサイトを一貫して制作します。
+    </p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <a
+        href="#contact"
+        class="min-h-11 flex items-center rounded-lg bg-accent text-white text-sm px-6 py-3 hover:bg-secondary transition-colors"
+      >
+        お問い合わせ
+      </a>
+      <a
+        href="#works"
+        class="min-h-11 flex items-center rounded-lg border border-border text-primary text-sm px-6 py-3 hover:border-accent hover:text-accent transition-colors"
+      >
+        実績を見る
+      </a>
+    </div>
+  </section>
+  <section id="works" class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-primary text-center">実績</h2>
+    <div class="mt-10 grid gap-8">
+      {works.map((work) => <WorkCard work={work} />)}
+    </div>
+  </section>
+  <section id="services" class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-primary text-center">サービス</h2>
+    <div class="mt-10 grid sm:grid-cols-2 gap-6">
+      {services.map((service) => (
+        <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+          <h3 class="text-lg font-bold text-primary">{service.name}</h3>
+          <p class="mt-2 text-sm text-muted leading-relaxed">{service.for}</p>
+          <ol class="mt-5 space-y-2">
+            {service.steps.map((step, i) => (
+              <li class="flex items-center gap-3 text-sm text-secondary">
+                <span class="shrink-0 w-6 h-6 rounded-full bg-accent/10 text-accent text-xs font-bold flex items-center justify-center">
+                  {i + 1}
+                </span>
+                {step}
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+    </div>
+  </section>
+  <section id="profile" class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-primary text-center">プロフィール</h2>
+    <div class="mt-10 rounded-lg border border-border bg-card p-6 sm:p-10">
+      <h3 class="text-xl font-bold text-primary">WEBCRAFT</h3>
+      <p class="mt-4 text-sm text-secondary leading-relaxed">
+        Web制作を専門に活動しています。ヒアリングから丁寧に行い、見た目の美しさだけでなく、成果につながるサイト作りを心がけています。まずはお気軽にご相談ください。
+      </p>
+      <div class="mt-6 flex flex-wrap gap-2">
+        {skills.map((skill) => (
+          <span class="text-xs text-primary bg-bg border border-border rounded-full px-3 py-1">{skill}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section id="contact" class="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-primary text-center">お問い合わせ</h2>
+    <p class="mt-3 text-center text-sm text-muted">
+      サイト制作のご相談はこちらのフォームからお気軽にどうぞ。
+    </p>
+    <div class="mt-10 rounded-lg border border-border bg-card p-6 sm:p-10">
+      <ContactForm />
+    </div>
+  </section>
+</BaseLayout>

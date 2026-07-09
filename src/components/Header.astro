@@ -1,0 +1,31 @@
+---
+const navItems = [
+  { href: '#works', label: '実績' },
+  { href: '#services', label: 'サービス' },
+  { href: '#profile', label: 'プロフィール' },
+];
+---
+
+<header class="sticky top-0 z-20 border-b border-border bg-bg/90 backdrop-blur-sm">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+    <a href="#" class="font-bold text-lg sm:text-xl tracking-wide text-primary">
+      WEBCRAFT
+    </a>
+    <nav class="hidden sm:flex gap-x-6 text-sm text-secondary">
+      {navItems.map((item) => (
+        <a href={item.href} class="hover:text-accent transition-colors">{item.label}</a>
+      ))}
+    </nav>
+    <a
+      href="#contact"
+      class="shrink-0 min-h-11 flex items-center rounded-lg bg-primary text-white text-sm px-4 py-2 hover:bg-secondary transition-colors"
+    >
+      お問い合わせ
+    </a>
+  </div>
+  <nav class="sm:hidden flex justify-center gap-x-6 text-sm text-secondary pb-3">
+    {navItems.map((item) => (
+      <a href={item.href} class="hover:text-accent transition-colors">{item.label}</a>
+    ))}
+  </nav>
+</header>

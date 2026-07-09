@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --font-body: "Noto Sans JP", sans-serif;
+
+  --color-bg: #F8FAFC;
+  --color-card: #FFFFFF;
+  --color-primary: #0F172A;
+  --color-secondary: #334155;
+  --color-accent: #0369A1;
+  --color-muted: #64748B;
+  --color-border: #E2E8F0;
+  --color-destructive: #DC2626;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3 {
+    font-weight: 700;
+  }
+}
