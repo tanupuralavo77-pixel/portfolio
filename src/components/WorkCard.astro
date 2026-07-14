@@ -10,7 +10,7 @@ const { work } = Astro.props;
 
 <article class="rounded-lg border border-border bg-card overflow-hidden">
   <img
-    src={`https://picsum.photos/seed/${work.imageSeed}/800/500`}
+    src={work.image ?? `https://picsum.photos/seed/${work.imageSeed}/800/500`}
     alt={`${work.title}のスクリーンショット`}
     class="w-full aspect-video object-cover"
     loading="lazy"
