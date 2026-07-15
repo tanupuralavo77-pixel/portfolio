@@ -21,12 +21,12 @@ const skills = ['Astro', 'Tailwind CSS', 'HTML / CSS', 'JavaScript / TypeScript'
 ---
 
 <BaseLayout title="トップ">
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 text-center">
-    <h1 class="text-3xl sm:text-5xl font-bold text-primary leading-snug">
-      デザインからコーディングまで。<br />伝わるWebサイトをつくります。
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 text-center">
+    <h1 class="text-3xl sm:text-4xl font-bold text-primary leading-snug">
+      デザインから実装まで一貫対応。<br />伝わって、相談につながるWebサイトを制作します。
     </h1>
-    <p class="mt-6 text-secondary text-sm sm:text-base leading-relaxed">
-      デザイン制作からLP(ランディングページ)制作まで、成果につながるWebサイトを一貫して制作します。
+    <p class="mt-6 max-w-2xl mx-auto text-secondary text-sm sm:text-base leading-relaxed">
+      ヒアリングから構成・デザイン・コーディングまで一貫して対応し、見た目の美しさだけでなく、目的に合った導線設計で"伝わるサイト"を形にします。
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
       <a
@@ -74,14 +74,20 @@ const skills = ['Astro', 'Tailwind CSS', 'HTML / CSS', 'JavaScript / TypeScript'
     <h2 class="text-2xl sm:text-3xl font-bold text-primary text-center">プロフィール</h2>
     <div class="mt-10 rounded-lg border border-border bg-card p-6 sm:p-10">
       <h3 class="text-xl font-bold text-primary">WEBCRAFT</h3>
-      <p class="mt-4 text-sm text-secondary leading-relaxed">
-        Web制作を専門に活動しています。ヒアリングから丁寧に行い、見た目の美しさだけでなく、成果につながるサイト作りを心がけています。まずはお気軽にご相談ください。
-      </p>
+      <div class="mt-4 space-y-3 text-sm text-secondary leading-relaxed">
+        <p>WEBCRAFTとして、Webサイト制作を行っています。丁寧なヒアリングを大切にしながら、構成・デザイン・コーディングまで一貫して対応しています。ただ見た目がきれいなだけではなく、サービスやお店の魅力がきちんと伝わり、次の行動につながるサイトづくりを心がけています。</p>
+        <p>店舗サイトやLP制作、世界観を大切にしたデザインが得意です。</p>
+        <p>「まだうまく言語化できていない」「何から相談すればよいか分からない」という段階でも、安心してご相談ください。</p>
+      </div>
       <div class="mt-6 flex flex-wrap gap-2">
         {skills.map((skill) => (
           <span class="text-xs text-primary bg-bg border border-border rounded-full px-3 py-1">{skill}</span>
         ))}
       </div>
+      <p class="mt-6 pt-6 border-t border-border text-sm text-muted leading-relaxed">
+        ご相談・お見積もりは無料です。<br />
+        原稿や構成が固まっていない段階でも、お気軽にご相談ください。
+      </p>
     </div>
   </section>
   <section id="contact" class="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
