@@ -6,11 +6,19 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: string;
+  ogUrl?: string;
 }
 
 const {
   title,
   description = 'デザインからコーディングまで。伝わるWebサイトをつくります。',
+  ogTitle = 'WEBCRAFT | デザインから実装まで一貫対応するWeb制作ポートフォリオ',
+  ogDescription = 'ヒアリングから構成・デザイン・コーディングまで一貫対応。伝わって、相談につながるWebサイトを制作しています。店舗サイト・LP制作のご相談もお気軽にどうぞ。',
+  ogType = 'website',
+  ogUrl = 'https://portfolio-ruby-theta-36.vercel.app/',
 } = Astro.props;
 ---
 
@@ -21,6 +29,13 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | WEBCRAFT</title>
     <meta name="description" content={description} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
