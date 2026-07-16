@@ -5,6 +5,7 @@ export interface Work {
   url: string;
   imageSeed: string;
   image?: string;
+  price: number;
 }
 
 export const works: Work[] = [
@@ -16,6 +17,7 @@ export const works: Work[] = [
     url: 'https://hair-salon-omega-five.vercel.app',
     imageSeed: 'portfolio-work-hair-salon',
     image: '/images/works/hair-salon-nagi-thumbnail.png',
+    price: 80000,
   },
   {
     title: 'Bar NOCTURNE',
@@ -25,6 +27,7 @@ export const works: Work[] = [
     url: 'https://bar-nocturne.vercel.app',
     imageSeed: 'portfolio-work-bar-nocturne',
     image: '/images/works/bar-nocturne-thumbnail.png',
+    price: 80000,
   },
   {
     title: '喫茶とまり木',
@@ -34,6 +37,7 @@ export const works: Work[] = [
     url: 'https://tanupuralavo77-pixel.github.io/kissa-tomarigi/',
     imageSeed: 'portfolio-work-kissa-tomarigi',
     image: '/images/works/kissa-tomarigi-thumbnail.png',
+    price: 80000,
   },
   {
     title: 'もふもふ堂 Mofu Mofu Do',
@@ -43,6 +47,7 @@ export const works: Work[] = [
     url: 'https://tanupuralavo77-pixel.github.io/mofumofu-do/',
     imageSeed: 'portfolio-work-mofumofu-do',
     image: '/images/works/mofumofu-do-thumbnail.png',
+    price: 70000,
   },
   {
     title: '家族防災チェック',
@@ -52,6 +57,7 @@ export const works: Work[] = [
     url: 'https://tanupuralavo77-pixel.github.io/manga-lp/family-bousai/',
     imageSeed: 'portfolio-work-family-bousai',
     image: '/images/works/family-bousai.jpeg',
+    price: 70000,
   },
   {
     title: '休息タイプ診断',
@@ -61,6 +67,7 @@ export const works: Work[] = [
     url: 'https://tanupuralavo77-pixel.github.io/manga-lp/kyusoku-shindan/',
     imageSeed: 'portfolio-work-kyusoku-shindan',
     image: '/images/works/kyusoku-shindan.jpeg',
+    price: 70000,
   },
   {
     title: 'AI購買サポート',
@@ -70,5 +77,6 @@ export const works: Work[] = [
     url: 'https://tanupuralavo77-pixel.github.io/manga-lp/ai-kaimono/',
     imageSeed: 'portfolio-work-ai-kaimono',
     image: '/images/works/ai-kaimono.jpeg',
+    price: 70000,
   },
 ];
