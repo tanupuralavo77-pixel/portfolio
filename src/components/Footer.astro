@@ -1,6 +1,7 @@
 ---
 const snsLinks = [
-  { href: '#', label: 'X' },
+  { href: 'https://x.com/web_craftweb_77', label: 'X' },
+  { href: 'https://www.instagram.com/web_craftweb_77/', label: 'Instagram' },
 ];
 ---
 
@@ -10,7 +11,7 @@ const snsLinks = [
     <p class="text-xs text-muted">&copy; {new Date().getFullYear()} WEBCRAFT</p>
     <div class="flex gap-4 text-sm">
       {snsLinks.map((link) => (
-        <a href={link.href} class="text-accent hover:text-secondary transition-colors">{link.label}</a>
+        <a href={link.href} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-secondary transition-colors">{link.label}</a>
       ))}
     </div>
   </div>
