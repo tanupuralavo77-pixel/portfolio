@@ -1,0 +1,409 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const tagGroups = [
+  {
+    name: 'purpose',
+    label: 'サイトの一番の目的',
+    required: true,
+    note: '複数選択可',
+    options: [
+      '集客・問い合わせ増加',
+      'ブランドイメージ向上',
+      '商品・サービス販売(EC)',
+      '採用・求人',
+      '実績・信頼の提示',
+      '予約受付',
+      'その他',
+    ],
+  },
+  {
+    name: 'desired_action',
+    label: '見た後にとってほしい行動',
+    required: true,
+    note: '複数選択可',
+    options: ['電話をかける', 'フォームから問い合わせる', '商品を購入する', '来店・来社する', 'SNSをフォローする', 'その他'],
+  },
+  {
+    name: 'impression',
+    label: 'サイトの印象を一言でいうと',
+    required: false,
+    note: '複数選択可',
+    options: ['高級感・落ち着き', '親しみやすさ', '先進的・スタイリッシュ', '誠実・堅実', '温かみ・手作り感', 'ポップ・元気'],
+  },
+  {
+    name: 'pages',
+    label: '必要だと思うページ',
+    required: false,
+    note: '複数選択可',
+    options: ['トップ', '会社・店舗紹介', 'サービス・商品一覧', '実績・事例', 'お客様の声', 'ブログ・コラム', '料金', '採用', 'お問い合わせ', 'よくある質問'],
+  },
+  {
+    name: 'features',
+    label: '欲しい機能',
+    required: false,
+    note: '複数選択可',
+    options: ['お問い合わせフォーム', '予約・申込システム', 'オンライン決済・EC機能', 'ブログ更新機能(自分で更新したい)', 'Googleマップ埋め込み', 'SNS連携', '多言語対応', 'アクセス解析', '特になし・分からない'],
+  },
+];
+---
+
+<BaseLayout
+  title="事前ヒアリングシート"
+  description="サイト制作のご相談前に、ご希望の内容を教えてください。所要時間の目安は15〜20分です。"
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-4 text-center">
+    <h1 class="text-2xl sm:text-3xl font-bold text-primary">事前ヒアリングシート</h1>
+    <p class="mt-4 text-sm sm:text-base text-secondary leading-relaxed">
+      サイト制作のご相談を正確にお伺いするための事前アンケートです。<br class="hidden sm:block" />
+      分かる範囲のご記入で構いません。所要時間の目安は15〜20分です。
+    </p>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <form id="hearing-form" class="space-y-8" novalidate>
+
+      <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-primary">1. 基本情報</h2>
+        <div class="mt-6 space-y-5">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="company" class="block text-sm font-medium text-primary">会社名・屋号 <span class="text-destructive">*</span></label>
+              <input type="text" id="company" name="company" required class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="例: 株式会社◯◯ / 屋号" />
+            </div>
+            <div>
+              <label for="contact_name" class="block text-sm font-medium text-primary">ご担当者名 <span class="text-destructive">*</span></label>
+              <input type="text" id="contact_name" name="contact_name" required class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="例: 山田 太郎" />
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="hearing_email" class="block text-sm font-medium text-primary">連絡先メール <span class="text-destructive">*</span></label>
+              <input type="email" id="hearing_email" name="hearing_email" required class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="example@mail.com" />
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-primary">電話番号</label>
+              <input type="tel" id="phone" name="phone" class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="090-0000-0000" />
+            </div>
+          </div>
+          <div>
+            <label for="business" class="block text-sm font-medium text-primary">業種・事業内容 <span class="text-destructive">*</span></label>
+            <textarea id="business" name="business" rows="3" required class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="どんな事業を、誰に向けて行っているか"></textarea>
+          </div>
+          <div>
+            <label for="current_site" class="block text-sm font-medium text-primary">現在のサイト・SNS URL</label>
+            <input type="text" id="current_site" name="current_site" class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="既存サイトがあればURLを" />
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-primary">2. ご依頼の目的</h2>
+        <div class="mt-6 space-y-5">
+          <div>
+            <label class="block text-sm font-medium text-primary">ご依頼の種別 <span class="text-destructive">*</span></label>
+            <div class="mt-3 flex flex-wrap gap-3 text-sm text-secondary">
+              <label class="flex items-center gap-2"><input type="radio" name="request_type" value="新規制作" required class="accent-accent"> 新規制作</label>
+              <label class="flex items-center gap-2"><input type="radio" name="request_type" value="リニューアル" class="accent-accent"> リニューアル</label>
+              <label class="flex items-center gap-2"><input type="radio" name="request_type" value="一部改修・追加" class="accent-accent"> 一部改修・追加</label>
+              <label class="flex items-center gap-2"><input type="radio" name="request_type" value="相談段階" class="accent-accent"> 相談段階(未確定)</label>
+            </div>
+          </div>
+          <div data-tag-group="purpose">
+            <label class="block text-sm font-medium text-primary">サイトの一番の目的 <span class="text-destructive">*</span> <span class="font-normal text-xs text-muted">(複数選択可)</span></label>
+            <div class="mt-3 flex flex-wrap gap-2 tag-buttons"></div>
+            <input type="hidden" name="purpose" />
+          </div>
+          <div>
+            <label for="success_state" class="block text-sm font-medium text-primary">成功と言える具体的な状態</label>
+            <textarea id="success_state" name="success_state" rows="2" class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="例: 月5件の問い合わせが来る／来店予約が2倍になる"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-primary">3. 誰に見てほしいか</h2>
+        <div class="mt-6 space-y-5">
+          <div>
+            <label for="target" class="block text-sm font-medium text-primary">メインのターゲット層 <span class="text-destructive">*</span></label>
+            <textarea id="target" name="target" rows="2" required class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="例: 40代〜50代の経営者／初めて利用する個人客"></textarea>
+          </div>
+          <div data-tag-group="desired_action">
+            <label class="block text-sm font-medium text-primary">見た後にとってほしい行動 <span class="text-destructive">*</span> <span class="font-normal text-xs text-muted">(複数選択可)</span></label>
+            <div class="mt-3 flex flex-wrap gap-2 tag-buttons"></div>
+            <input type="hidden" name="desired_action" />
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-primary">4. 現状の課題</h2>
+        <div class="mt-6 space-y-5">
+          <div>
+            <label for="pain_points" class="block text-sm font-medium text-primary">今のサイトやSNSで困っていること</label>
+            <textarea id="pain_points" name="pain_points" rows="3" class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="例: スマホで見づらい／情報が古い／差別化できていない"></textarea>
+          </div>
+          <div>
+            <label for="competitors" class="block text-sm font-medium text-primary">気になっている競合サイト</label>
+            <input type="text" id="competitors" name="competitors" class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="サイト名やURL" />
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-primary">5. デザイン・雰囲気の好み</h2>
+        <p class="mt-1 text-xs text-muted">言葉にしづらい部分なので、参考サイトを教えていただくのが一番確実です。</p>
+        <div class="mt-6 space-y-5">
+          <div>
+            <label for="liked_sites" class="block text-sm font-medium text-primary">好きな雰囲気のサイト</label>
+            <input type="text" id="liked_sites" name="liked_sites" class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="URLを1〜3件、どこが好きかも添えていただけると助かります" />
+          </div>
+          <div>
+            <label for="disliked_sites" class="block text-sm font-medium text-primary">避けたい・苦手な雰囲気</label>
+            <input type="text" id="disliked_sites" name="disliked_sites" class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="URLまたは特徴" />
+          </div>
+          <div data-tag-group="impression">
+            <label class="block text-sm font-medium text-primary">サイトの印象を一言でいうと <span class="font-normal text-xs text-muted">(複数選択可)</span></label>
+            <div class="mt-3 flex flex-wrap gap-2 tag-buttons"></div>
+            <input type="hidden" name="impression" />
+          </div>
+          <div>
+            <label for="colors" class="block text-sm font-medium text-primary">使いたい・避けたい色</label>
+            <input type="text" id="colors" name="colors" class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="例: 会社ロゴの青を基調にしたい" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-primary">ロゴ・ブランドガイドライン</label>
+            <div class="mt-3 flex flex-wrap gap-3 text-sm text-secondary">
+              <label class="flex items-center gap-2"><input type="checkbox" name="logo" value="ロゴあり(支給可能)" class="accent-accent"> ロゴあり(支給可能)</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="logo" value="ロゴなし(相談したい)" class="accent-accent"> ロゴなし(相談したい)</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="logo" value="ブランドガイドラインあり" class="accent-accent"> ブランドガイドラインあり</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-primary">6. 構成・素材の準備状況</h2>
+        <div class="mt-6 space-y-5">
+          <div data-tag-group="pages">
+            <label class="block text-sm font-medium text-primary">必要だと思うページ <span class="font-normal text-xs text-muted">(複数選択可)</span></label>
+            <div class="mt-3 flex flex-wrap gap-2 tag-buttons"></div>
+            <input type="hidden" name="pages" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-primary">写真・画像素材の準備状況 <span class="text-destructive">*</span></label>
+            <div class="mt-3 flex flex-wrap gap-3 text-sm text-secondary">
+              <label class="flex items-center gap-2"><input type="radio" name="photo_status" value="自社で撮影済み・支給できる" required class="accent-accent"> 支給できる</label>
+              <label class="flex items-center gap-2"><input type="radio" name="photo_status" value="一部ある"> 一部ある</label>
+              <label class="flex items-center gap-2"><input type="radio" name="photo_status" value="ほぼない・相談したい"> ほぼない・相談したい</label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-primary">文章の準備状況 <span class="text-destructive">*</span></label>
+            <div class="mt-3 flex flex-wrap gap-3 text-sm text-secondary">
+              <label class="flex items-center gap-2"><input type="radio" name="text_status" value="用意できる" required class="accent-accent"> 用意できる</label>
+              <label class="flex items-center gap-2"><input type="radio" name="text_status" value="一緒に作りたい"> 一緒に作りたい</label>
+              <label class="flex items-center gap-2"><input type="radio" name="text_status" value="ほぼお任せしたい"> ほぼお任せしたい</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-primary">7. 欲しい機能</h2>
+        <div class="mt-6 space-y-5">
+          <div data-tag-group="features">
+            <div class="flex flex-wrap gap-2 tag-buttons"></div>
+            <input type="hidden" name="features" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-primary">独自ドメイン・サーバー</label>
+            <div class="mt-3 flex flex-wrap gap-3 text-sm text-secondary">
+              <label class="flex items-center gap-2"><input type="radio" name="domain_status" value="既に持っている" class="accent-accent"> 既に持っている</label>
+              <label class="flex items-center gap-2"><input type="radio" name="domain_status" value="これから取得したい"> これから取得したい</label>
+              <label class="flex items-center gap-2"><input type="radio" name="domain_status" value="分からない"> 分からない</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-primary">8. 予算・スケジュール</h2>
+        <div class="mt-6 space-y-5">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="budget" class="block text-sm font-medium text-primary">ご予算感</label>
+              <input type="text" id="budget" name="budget" class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="例: 〜10万円／要相談" />
+            </div>
+            <div>
+              <label for="deadline" class="block text-sm font-medium text-primary">希望公開時期</label>
+              <input type="text" id="deadline" name="deadline" class="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="例: 2026年9月末までに" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-primary">公開後の更新について</label>
+            <div class="mt-3 flex flex-wrap gap-3 text-sm text-secondary">
+              <label class="flex items-center gap-2"><input type="radio" name="update_plan" value="自分たちで更新したい" class="accent-accent"> 自分たちで更新したい</label>
+              <label class="flex items-center gap-2"><input type="radio" name="update_plan" value="更新も依頼したい"> 更新も依頼したい</label>
+              <label class="flex items-center gap-2"><input type="radio" name="update_plan" value="まだ決めていない"> まだ決めていない</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-primary">9. その他ご要望・気になること</h2>
+        <div class="mt-6">
+          <textarea name="other" rows="4" class="w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-accent" placeholder="不安なこと、絶対に外せない条件など自由にご記入ください"></textarea>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button
+          type="submit"
+          class="min-h-11 rounded-lg bg-accent text-white text-sm font-medium px-8 py-3 hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          この内容を送信する
+        </button>
+        <p id="form-status" role="status" aria-live="polite" class="mt-4 text-sm"></p>
+      </div>
+    </form>
+  </section>
+</BaseLayout>
+
+<script type="application/json" id="tag-groups-json" set:html={JSON.stringify(tagGroups)} />
+
+<script>
+  import emailjs from '@emailjs/browser';
+
+  // NOTE: EmailJS の SERVICE_ID / PUBLIC_KEY はプレースホルダーです。
+  // ContactForm.astro と同じ EmailJS アカウントの値に置き換えてください。
+  // 無料プランはテンプレート数が2つまでのため、専用テンプレートは作らず、
+  // ContactForm.astro の管理者通知用テンプレート(TEMPLATE_ID_NOTIFY)を使い回しています。
+  // 回答内容は message にまとめて整形して送っています。
+  const EMAILJS_SERVICE_ID = 'service_f8ncgrn';
+  const EMAILJS_TEMPLATE_ID_NOTIFY = 'template_5lah768';
+  const EMAILJS_PUBLIC_KEY = '15WunddXX3jgvhdIg';
+
+  const tagGroups = JSON.parse(document.getElementById('tag-groups-json').textContent);
+
+  const form = document.getElementById('hearing-form');
+  const statusEl = document.getElementById('form-status');
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  // タグ選択式グループ(複数選択)を組み立てる
+  tagGroups.forEach((group) => {
+    const container = form.querySelector(`[data-tag-group="${group.name}"] .tag-buttons`);
+    const hiddenInput = form.querySelector(`[data-tag-group="${group.name}"] input[type="hidden"]`);
+    const selected = new Set();
+
+    group.options.forEach((option) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = option;
+      btn.className =
+        'rounded-full border border-border px-3 py-1.5 text-xs text-secondary transition-colors hover:border-accent hover:text-accent';
+      btn.addEventListener('click', () => {
+        if (selected.has(option)) {
+          selected.delete(option);
+          btn.classList.remove('bg-accent', 'text-white', 'border-accent');
+          btn.classList.add('text-secondary');
+        } else {
+          selected.add(option);
+          btn.classList.add('bg-accent', 'text-white', 'border-accent');
+          btn.classList.remove('text-secondary');
+        }
+        hiddenInput.value = Array.from(selected).join('、');
+      });
+      container.appendChild(btn);
+    });
+  });
+
+  function showStatus(text, colorClass) {
+    statusEl.className = `mt-4 text-sm ${colorClass}`;
+    statusEl.textContent = text;
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const requiredRadios = ['request_type', 'photo_status', 'text_status'];
+    const missingRadio = requiredRadios.some(
+      (name) => !form.querySelector(`input[name="${name}"]:checked`)
+    );
+    if (!form.checkValidity() || missingRadio) {
+      form.reportValidity();
+      showStatus('必須項目(*)をご確認ください。', 'text-destructive');
+      return;
+    }
+
+    submitButton.disabled = true;
+    showStatus('送信中です…', 'text-muted');
+
+    const formData = new FormData(form);
+    const raw = Object.fromEntries(formData.entries());
+    raw.logo = formData.getAll('logo').join('、');
+
+    const fieldLabels = [
+      ['company', '会社名・屋号'],
+      ['contact_name', 'ご担当者名'],
+      ['hearing_email', '連絡先メール'],
+      ['phone', '電話番号'],
+      ['business', '業種・事業内容'],
+      ['current_site', '現在のサイト・SNS URL'],
+      ['request_type', 'ご依頼の種別'],
+      ['purpose', 'サイトの一番の目的'],
+      ['success_state', '成功と言える具体的な状態'],
+      ['target', 'メインのターゲット層'],
+      ['desired_action', '見た後にとってほしい行動'],
+      ['pain_points', '今のサイトやSNSで困っていること'],
+      ['competitors', '気になっている競合サイト'],
+      ['liked_sites', '好きな雰囲気のサイト'],
+      ['disliked_sites', '避けたい・苦手な雰囲気'],
+      ['impression', 'サイトの印象'],
+      ['colors', '使いたい・避けたい色'],
+      ['logo', 'ロゴ・ブランドガイドライン'],
+      ['pages', '必要だと思うページ'],
+      ['photo_status', '写真・画像素材の準備状況'],
+      ['text_status', '文章の準備状況'],
+      ['features', '欲しい機能'],
+      ['domain_status', '独自ドメイン・サーバー'],
+      ['budget', 'ご予算感'],
+      ['deadline', '希望公開時期'],
+      ['update_plan', '公開後の更新について'],
+      ['other', 'その他ご要望'],
+    ];
+
+    const message = fieldLabels
+      .map(([key, label]) => `${label}: ${raw[key] || '(未回答)'}`)
+      .join('\n');
+
+    const params = {
+      name: raw.contact_name || '(未記入)',
+      email: raw.hearing_email || '',
+      category: '事前ヒアリングシート回答',
+      message,
+    };
+
+    try {
+      const response = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_NOTIFY, params, {
+        publicKey: EMAILJS_PUBLIC_KEY,
+      });
+
+      if (response.status === 200) {
+        showStatus('送信しました。内容を確認のうえ、追ってご連絡いたします。', 'text-accent');
+        form.reset();
+        form.querySelectorAll('.tag-buttons button').forEach((btn) => {
+          btn.classList.remove('bg-accent', 'text-white', 'border-accent');
+          btn.classList.add('text-secondary');
+        });
+      } else {
+        showStatus('送信に失敗しました。時間をおいて再度お試しください。', 'text-destructive');
+      }
+    } catch {
+      showStatus('送信に失敗しました。時間をおいて再度お試しください。', 'text-destructive');
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
+</script>

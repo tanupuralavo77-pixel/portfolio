@@ -1,6 +1,8 @@
 <!--
-  NOTE: FORM_ENDPOINT is a placeholder Formspree URL. Replace
-  "REPLACE_ME" with a real Formspree form ID before publishing.
+  NOTE: EmailJS の SERVICE_ID / TEMPLATE_ID / PUBLIC_KEY はプレースホルダーです。
+  EmailJS (https://www.emailjs.com/) でアカウントを作成し、実際の値に置き換えてください。
+  - TEMPLATE_ID_NOTIFY   : 自分(管理者)宛の通知メール用テンプレート
+  - TEMPLATE_ID_AUTOREPLY: お客様宛の自動返信メール用テンプレート({{hearing_url}} を本文に含める)
 -->
 <form id="contact-form" class="space-y-5" novalidate>
   <div>
@@ -80,7 +82,12 @@
 </form>
 
 <script>
-  const FORM_ENDPOINT = 'https://formspree.io/f/mpqvwqgk';
+  import emailjs from '@emailjs/browser';
+
+  const EMAILJS_SERVICE_ID = 'service_f8ncgrn';
+  const EMAILJS_TEMPLATE_ID_NOTIFY = 'template_5lah768';
+  const EMAILJS_TEMPLATE_ID_AUTOREPLY = 'template_49ozfxm';
+  const EMAILJS_PUBLIC_KEY = '15WunddXX3jgvhdIg';
 
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const statusEl = document.getElementById('form-status') as HTMLParagraphElement;
@@ -165,16 +172,41 @@
     submitButton.disabled = true;
     showStatus('送信中です…', 'text-muted');
 
-    try {
-      const response = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form),
-      });
+    const nameInput = form.elements.namedItem('name') as HTMLInputElement;
+    const emailInput = form.elements.namedItem('email') as HTMLInputElement;
+    const hearingUrl = new URL('/hearing', window.location.origin).href;
 
-      if (response.ok) {
-        showStatus('送信しました。ありがとうございます。', 'text-accent');
+    const notifyParams = {
+      name: nameInput.value,
+      email: emailInput.value,
+      category: categoryInput.value,
+      message: messageTextarea.value,
+    };
+    const autoreplyParams = {
+      to_name: nameInput.value,
+      to_email: emailInput.value,
+      hearing_url: hearingUrl,
+    };
+
+    try {
+      const [notifyResult, autoreplyResult] = await Promise.all([
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_NOTIFY, notifyParams, {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        }),
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_AUTOREPLY, autoreplyParams, {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        }),
+      ]);
+
+      if (notifyResult.status === 200 && autoreplyResult.status === 200) {
+        showStatus('送信しました。ご入力のメールに事前ヒアリングシートをお送りしました。', 'text-accent');
         form.reset();
+        selectedTags.clear();
+        categoryTagsContainer.querySelectorAll<HTMLButtonElement>('.tag-button').forEach((btn) => {
+          btn.classList.remove('bg-accent', 'text-white', 'border-accent');
+          btn.classList.add('text-secondary');
+        });
+        updateMessagePlaceholder();
       } else {
         showStatus('送信に失敗しました。時間をおいて再度お試しください。', 'text-destructive');
       }
